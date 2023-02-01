@@ -8,12 +8,12 @@ import type { OptionType } from "./type";
 
 type Props = {
   children: React.ReactNode;
-  defaultValue?: OptionType;
+  defaultOption?: OptionType;
   onSelectChange: (option: OptionType) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-function Select({ children, defaultValue, onSelectChange, className }: Props) {
-  const value = useSelect({ defaultValue, onSelectChange });
+function Select({ children, defaultOption, onSelectChange, className }: Props) {
+  const value = useSelect({ defaultOption, onSelectChange });
 
   return (
     <SelectContext.Provider value={value}>

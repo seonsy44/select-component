@@ -11,14 +11,14 @@ type SelectContextType = {
 export const SelectContext = createContext<SelectContextType | null>(null);
 
 type Props = {
-  defaultValue?: OptionType;
+  defaultOption?: OptionType;
   onSelectChange: (option: OptionType) => void;
 };
 
-function useSelect({ defaultValue, onSelectChange }: Props) {
+function useSelect({ defaultOption, onSelectChange }: Props) {
   const [isOpened, setIsOpened] = useState(false);
   const [selectedOption, setSelectedOption] = useState<OptionType | null>(
-    defaultValue ?? null
+    defaultOption ?? null
   );
 
   const toggle = () => {
