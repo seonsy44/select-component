@@ -1,15 +1,6 @@
 import { createContext, useMemo, useState } from "react";
 import type { OptionType } from "../type";
 
-type SelectContextType = {
-  isOpened: boolean;
-  toggle: () => void;
-  selectedOption: OptionType | null;
-  onOptionClick: (option: OptionType) => () => void;
-};
-
-export const SelectContext = createContext<SelectContextType | null>(null);
-
 type Props = {
   defaultOption?: OptionType;
   onSelectChange: (option: OptionType) => void;

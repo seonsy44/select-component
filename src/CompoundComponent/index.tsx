@@ -3,7 +3,8 @@ import React from "react";
 import Button from "./ui/Button";
 import Option from "./ui/Option";
 import Options from "./ui/Options";
-import useSelect, { SelectContext } from "./hooks/useSelect";
+import useSelect from "./hooks/useSelect";
+import SelectContext from "./context/SelectContext";
 import type { OptionType } from "./type";
 
 type Props = {
