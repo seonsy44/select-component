@@ -10,9 +10,7 @@ function Button({ children, className }: Props) {
 
   return (
     <button className={className} type="button" onClick={toggle}>
-      {!selectedOption || selectedOption.id === "default"
-        ? children
-        : selectedOption.name}
+      {!selectedOption ? children : selectedOption.name}
     </button>
   );
 }

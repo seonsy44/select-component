@@ -8,7 +8,7 @@ import type { OptionType } from "./type";
 
 type Props = {
   children: React.ReactNode;
-  defaultOption?: OptionType;
+  defaultOption: OptionType;
   onSelectChange: (option: OptionType) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
