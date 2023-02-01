@@ -5,12 +5,12 @@ type Props = {
   children: React.ReactNode;
 } & React.HTMLAttributes<HTMLUListElement>;
 
-function Options({ children, className }: Props) {
+function Options({ children, ...attributes }: Props) {
   const { isOpened } = useSelectContext() || {};
 
   if (!isOpened) return null;
 
-  return <ul className={className}>{children}</ul>;
+  return <ul {...attributes}>{children}</ul>;
 }
 
 export default Options;

@@ -1,16 +1,14 @@
 import React from "react";
 import useSelectContext from "../hooks/useSelectContext";
 
-type Props = {
-  children: React.ReactNode;
-} & React.HTMLAttributes<HTMLButtonElement>;
+type Props = React.HTMLAttributes<HTMLButtonElement>;
 
-function Button({ children, className }: Props) {
+function Button({ ...attributes }: Props) {
   const { toggle, selectedOption } = useSelectContext() || {};
 
   return (
-    <button className={className} type="button" onClick={toggle}>
-      {!selectedOption ? children : selectedOption.name}
+    <button {...attributes} type="button" onClick={toggle}>
+      {selectedOption?.name}
     </button>
   );
 }
