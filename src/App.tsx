@@ -22,7 +22,8 @@ function App() {
         onSelectChange={handleChange}
         defaultOption={options[0]}
       >
-        <Select.Button className="select-button">hello wolrd</Select.Button>
+        <Select.Label className="select-label">Frontend: </Select.Label>
+        <Select.Button className="select-button" />
         <Select.Options className="select-options">
           {options.map(({ id, name }) => (
             <Select.Option

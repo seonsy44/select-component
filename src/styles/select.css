@@ -30,3 +30,7 @@
 .selected {
   background-color: rgb(230, 230, 230);
 }
+
+.select-label {
+  margin-bottom: 10px;
+}
