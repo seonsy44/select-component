@@ -8,9 +8,10 @@ import type { OptionType } from "../type";
 type Props = OptionType & React.HTMLAttributes<HTMLLIElement>;
 
 function Option({ id, name, ...attributes }: Props) {
-  const { changeSelectedOption, selectedOption } = useSelectContext() || {};
+  const { changeSelectedOption, selectedOption } = useSelectContext();
   const { handleKeyDownOnLI } = useKeyDown();
   const classList = getClassList(attributes?.className, selectedOption?.id === id && "selected");
+  const handleClick = () => changeSelectedOption({ id, name });
 
   return (
     <li
@@ -18,9 +19,7 @@ function Option({ id, name, ...attributes }: Props) {
       data-id={id}
       className={classList}
       tabIndex={0}
-      onClick={() => {
-        if (changeSelectedOption) changeSelectedOption({ id, name });
-      }}
+      onClick={handleClick}
       onKeyDown={handleKeyDownOnLI}
     >
       {name}

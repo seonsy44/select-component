@@ -6,7 +6,7 @@ type Props = {
 } & React.HTMLAttributes<HTMLUListElement>;
 
 function Options({ children, ...attributes }: Props) {
-  const { isOpened } = useSelectContext() || {};
+  const { isOpened } = useSelectContext();
 
   if (!isOpened) return null;
 

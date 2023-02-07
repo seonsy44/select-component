@@ -9,6 +9,14 @@ type SelectContextType = {
   changeFocusedOption: (option: OptionType) => void;
 };
 
-const SelectContext = createContext<SelectContextType | null>(null);
+const defaultContext = {
+  isOpened: false,
+  toggle: (action?: "open" | "close" | MouseEvent<HTMLButtonElement>) => {},
+  selectedOption: null,
+  changeSelectedOption: (option: OptionType) => {},
+  changeFocusedOption: (option: OptionType) => {},
+};
+
+const SelectContext = createContext<SelectContextType>(defaultContext);
 
 export default SelectContext;
