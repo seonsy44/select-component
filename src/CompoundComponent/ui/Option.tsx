@@ -1,17 +1,16 @@
+import React from "react";
+
 import useSelectContext from "../hooks/useSelectContext";
+import useKeyDown from "../hooks/useKeyDown";
 import getClassList from "../utils/getClassList";
 import type { OptionType } from "../type";
-import useKeyDown from "../hooks/useKeyDown";
 
 type Props = OptionType & React.HTMLAttributes<HTMLLIElement>;
 
 function Option({ id, name, ...attributes }: Props) {
-  const { onOptionClick, selectedOption } = useSelectContext() || {};
+  const { changeSelectedOption, selectedOption } = useSelectContext() || {};
   const { handleKeyDownOnLI } = useKeyDown();
-  const classList = getClassList(
-    attributes?.className,
-    selectedOption?.id === id && "selected"
-  );
+  const classList = getClassList(attributes?.className, selectedOption?.id === id && "selected");
 
   return (
     <li
@@ -19,7 +18,9 @@ function Option({ id, name, ...attributes }: Props) {
       data-id={id}
       className={classList}
       tabIndex={0}
-      onClick={onOptionClick && onOptionClick({ id, name })}
+      onClick={() => {
+        if (changeSelectedOption) changeSelectedOption({ id, name });
+      }}
       onKeyDown={handleKeyDownOnLI}
     >
       {name}
@@ -27,4 +28,4 @@ function Option({ id, name, ...attributes }: Props) {
   );
 }
 
-export default Option;
+export default React.memo(Option);

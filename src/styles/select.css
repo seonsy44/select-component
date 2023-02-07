@@ -23,8 +23,9 @@
   cursor: pointer;
 }
 
-.select-option:hover {
+.select-option:focus {
   background-color: rgb(200, 200, 200);
+  outline: none;
 }
 
 .selected {

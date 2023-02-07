@@ -10,13 +10,13 @@ type Props = {
 function useSelectedOption({ defaultOption, onSelectChange, toggle }: Props) {
   const [selectedOption, setSelectedOption] = useState<OptionType>(defaultOption);
 
-  const onOptionClick = (option: OptionType) => () => {
+  const changeSelectedOption = (option: OptionType) => {
     onSelectChange(option);
     setSelectedOption(option);
     toggle();
   };
 
-  return { selectedOption, onOptionClick };
+  return { selectedOption, changeSelectedOption };
 }
 
 export default useSelectedOption;
