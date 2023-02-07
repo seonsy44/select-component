@@ -6,7 +6,7 @@ type SelectContextType = {
   toggle: (action?: "open" | "close" | MouseEvent<HTMLButtonElement>) => void;
   selectedOption: OptionType | null;
   changeSelectedOption: (option: OptionType) => void;
-  changeFocusedOption: (option: OptionType) => void;
+  changeFocusedOption: (option: OptionType | null) => void;
 };
 
 const defaultContext = {
@@ -14,7 +14,7 @@ const defaultContext = {
   toggle: (action?: "open" | "close" | MouseEvent<HTMLButtonElement>) => {},
   selectedOption: null,
   changeSelectedOption: (option: OptionType) => {},
-  changeFocusedOption: (option: OptionType) => {},
+  changeFocusedOption: (option: OptionType | null) => {},
 };
 
 const SelectContext = createContext<SelectContextType>(defaultContext);

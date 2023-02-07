@@ -11,7 +11,7 @@ type Props = {
 function useFocusedOption({ selectedOption, selectRef, isOpened }: Props) {
   const [focusedOption, setFocusedOption] = useState<OptionType | null>(selectedOption);
 
-  const changeFocusedOption = (option: OptionType) => {
+  const changeFocusedOption = (option: OptionType | null) => {
     setFocusedOption(option);
   };
 
@@ -22,9 +22,8 @@ function useFocusedOption({ selectedOption, selectRef, isOpened }: Props) {
       node.childNodes.forEach((LI: ChildNode) => {
         if (!(LI instanceof HTMLElement)) return;
 
-        if (LI.dataset.id === focusedOption?.id) {
-          LI.focus();
-        }
+        if (!focusedOption) LI.blur();
+        if (LI.dataset.id === focusedOption?.id) LI.focus();
       });
     });
   };

@@ -1,7 +1,7 @@
 import optionFromNode from "../utils/optionFromNode";
 import useSelectContext from "./useSelectContext";
 
-function useMouseEnter() {
+function useMouse() {
   const { changeFocusedOption } = useSelectContext();
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLLIElement>) => {
@@ -11,7 +11,11 @@ function useMouseEnter() {
     changeFocusedOption(option);
   };
 
-  return { handleMouseEnter };
+  const handleMouseLeave = (e: React.MouseEvent<HTMLUListElement>) => {
+    changeFocusedOption(null);
+  };
+
+  return { handleMouseEnter, handleMouseLeave };
 }
 
-export default useMouseEnter;
+export default useMouse;
