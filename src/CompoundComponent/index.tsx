@@ -8,6 +8,7 @@ import SelectContext from "./context/SelectContext";
 import useToggle from "./hooks/useToggle";
 import useSelectedOption from "./hooks/useSelectedOption";
 import useFocusedOption from "./hooks/useFocusedOption";
+import useClickAway from "./hooks/useClickAway";
 import focusOnButton from "./utils/focusOnButton";
 import type { OptionType } from "./type";
 
@@ -24,6 +25,7 @@ function Select({ children, defaultOption, onSelectChange, ...attributes }: Prop
   const { isOpened, toggle } = useToggle({ onClose: onToggleClose });
   const { selectedOption, changeSelectedOption } = useSelectedOption({ defaultOption, onSelectChange, toggle });
   const { changeFocusedOption } = useFocusedOption({ selectedOption, selectRef, isOpened });
+  useClickAway({ ref: selectRef, handleClick: toggle.off });
 
   const value = useMemo(
     () => ({
