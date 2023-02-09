@@ -3,15 +3,23 @@ import { OptionType } from "../type";
 
 type SelectContextType = {
   isOpened: boolean;
-  toggle: (action?: "open" | "close" | MouseEvent<HTMLButtonElement>) => void;
+  toggle: {
+    (): void;
+    on(): void;
+    off(): void;
+  };
   selectedOption: OptionType | null;
   changeSelectedOption: (option: OptionType) => void;
   changeFocusedOption: (option: OptionType | null) => void;
 };
 
+const toggleDefault = () => {};
+toggleDefault.on = () => {};
+toggleDefault.off = () => {};
+
 const defaultContext = {
   isOpened: false,
-  toggle: (action?: "open" | "close" | MouseEvent<HTMLButtonElement>) => {},
+  toggle: toggleDefault,
   selectedOption: null,
   changeSelectedOption: (option: OptionType) => {},
   changeFocusedOption: (option: OptionType | null) => {},

@@ -2,11 +2,11 @@ import optionFromNode from "../utils/optionFromNode";
 import useSelectContext from "./useSelectContext";
 
 function useKeyDown() {
-  const { toggle, changeFocusedOption, changeSelectedOption } = useSelectContext() || {};
+  const { toggle, changeFocusedOption, changeSelectedOption } = useSelectContext();
 
   const handleKeyDownOnButton = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if ((e.key === "ArrowDown" || e.key === "ArrowUp") && toggle) {
-      toggle("open");
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      toggle.on();
     }
   };
 
@@ -18,6 +18,7 @@ function useKeyDown() {
       if (!option) return;
 
       changeSelectedOption(option);
+      e.preventDefault();
       return;
     }
 

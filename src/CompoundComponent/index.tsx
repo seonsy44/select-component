@@ -8,6 +8,7 @@ import SelectContext from "./context/SelectContext";
 import useToggle from "./hooks/useToggle";
 import useSelectedOption from "./hooks/useSelectedOption";
 import useFocusedOption from "./hooks/useFocusedOption";
+import focusOnButton from "./utils/focusOnButton";
 import type { OptionType } from "./type";
 
 type Props = {
@@ -18,7 +19,9 @@ type Props = {
 
 function Select({ children, defaultOption, onSelectChange, ...attributes }: Props) {
   const selectRef = useRef<HTMLDivElement>(null);
-  const { isOpened, toggle } = useToggle();
+  const onToggleClose = () => focusOnButton(selectRef);
+
+  const { isOpened, toggle } = useToggle({ onClose: onToggleClose });
   const { selectedOption, changeSelectedOption } = useSelectedOption({ defaultOption, onSelectChange, toggle });
   const { changeFocusedOption } = useFocusedOption({ selectedOption, selectRef, isOpened });
 
