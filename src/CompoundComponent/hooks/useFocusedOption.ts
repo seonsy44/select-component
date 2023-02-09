@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import type { OptionType } from "../type";
+import focusOnOption from "../utils/focusOnOption";
 
 type Props = {
   selectedOption: OptionType;
@@ -15,21 +16,8 @@ function useFocusedOption({ selectedOption, selectRef, isOpened }: Props) {
     setFocusedOption(option);
   };
 
-  const focusOnOption = () => {
-    selectRef.current?.childNodes.forEach((node: ChildNode) => {
-      if (node.nodeName !== "UL") return;
-
-      node.childNodes.forEach((LI: ChildNode) => {
-        if (!(LI instanceof HTMLElement)) return;
-
-        if (!focusedOption) LI.blur();
-        if (LI.dataset.id === focusedOption?.id) LI.focus();
-      });
-    });
-  };
-
   useEffect(() => {
-    focusOnOption();
+    focusOnOption(selectRef, focusedOption);
   }, [focusedOption]);
 
   useEffect(() => {
