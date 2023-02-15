@@ -161,3 +161,9 @@ button {
   padding: 0;
   cursor: pointer;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
