@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Select defaultOption={options[0]} onSelectChange={handleChange}>
-        {({ isOpened, selectedOption, buttonProps }) => {
+        {({ isOpened, selectedOption, buttonProps, optionsProps, optionProps }) => {
           return (
             <>
               <label className="select-label">Frontend: </label>
@@ -26,9 +26,14 @@ function App() {
                 {selectedOption?.name}
               </button>
               {isOpened && (
-                <ul className="select-options">
+                <ul className="select-options" {...optionsProps}>
                   {options.map((option: OptionType) => (
-                    <li className="select-option" key={option.id}>
+                    <li
+                      key={option.id}
+                      className={`select-option${selectedOption?.id === option.id ? " selected" : ""}`}
+                      data-id={option.id}
+                      {...optionProps}
+                    >
                       {option.name}
                     </li>
                   ))}

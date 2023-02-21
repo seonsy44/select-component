@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 import useToggle from "./hooks/useToggle";
 import useSelectedOption from "./hooks/useSelectedOption";
@@ -17,11 +17,13 @@ type ChildrenProps = {
   optionsProps: {
     onMouseLeave: (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => void;
   };
-  //   optionProps: {
-  //     onClick: () => void;
-  //     onKeyDown: () => void;
-  //     onMouseEnter: () => void;
-  //   };
+  optionProps: {
+    className?: string;
+    tabIndex?: number;
+    onClick: (e: React.MouseEvent<HTMLLIElement>) => void;
+    onKeyDown: (e: React.KeyboardEvent<HTMLLIElement>) => void;
+    onMouseEnter: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  };
 };
 
 type Props = {
@@ -41,6 +43,13 @@ function Select({ children, defaultOption, onSelectChange }: Props) {
     changeSelectedOption,
   });
   const { handleMouseEnter, handleMouseLeave } = useMouse({ changeFocusedOption });
+  const handleOptionClick = (e: React.MouseEvent<HTMLLIElement>) => {
+    const LI = e.currentTarget;
+    const id = LI.dataset.id;
+    const name = LI.textContent;
+    if (!id || !name) return;
+    changeSelectedOption({ id, name });
+  };
 
   if (!children || typeof children !== "function") return null;
 
@@ -51,6 +60,12 @@ function Select({ children, defaultOption, onSelectChange }: Props) {
         selectedOption,
         buttonProps: { onClick: toggle, onKeyDown: handleKeyDownOnButton },
         optionsProps: { onMouseLeave: handleMouseLeave },
+        optionProps: {
+          tabIndex: 0,
+          onClick: handleOptionClick,
+          onKeyDown: handleKeyDownOnLI,
+          onMouseEnter: handleMouseEnter,
+        },
       })}
     </div>
   );
