@@ -1,4 +1,4 @@
-import { OptionType } from "../type";
+import { OptionType } from "../../type";
 
 const focusOnOption = (selectRef: React.RefObject<HTMLDivElement>, focusedOption: OptionType | null) => {
   selectRef.current?.childNodes.forEach((node: ChildNode) => {

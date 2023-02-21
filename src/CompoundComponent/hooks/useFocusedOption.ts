@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import type { OptionType } from "../type";
+import type { OptionType } from "../../type";
 import focusOnOption from "../utils/focusOnOption";
 
 type Props = {

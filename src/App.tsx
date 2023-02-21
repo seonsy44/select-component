@@ -1,5 +1,5 @@
-import Select from "./CompoundComponent";
-import type { OptionType } from "./CompoundComponent/type";
+import Select from "./RenderProp";
+import type { OptionType } from "./type";
 import "./styles/select.css";
 
 const options = [
@@ -17,23 +17,18 @@ function App() {
 
   return (
     <div className="App">
-      <Select
-        className="select"
-        onSelectChange={handleChange}
-        defaultOption={options[0]}
-      >
-        <Select.Label className="select-label">Frontend: </Select.Label>
-        <Select.Button className="select-button" />
-        <Select.Options className="select-options">
-          {options.map(({ id, name }) => (
-            <Select.Option
-              className="select-option"
-              id={id}
-              name={name}
-              key={id}
-            />
-          ))}
-        </Select.Options>
+      <Select>
+        {() => {
+          return (
+            <div className="select">
+              <label className="select-label">Frontend: </label>
+              <button className="select-button">button</button>
+              <ul className="select-options">
+                <li className="select-option">option</li>
+              </ul>
+            </div>
+          );
+        }}
       </Select>
     </div>
   );

@@ -1,5 +1,5 @@
 import { MouseEvent, useState } from "react";
-import type { OptionType } from "../type";
+import type { OptionType } from "../../type";
 
 type Props = {
   defaultOption: OptionType;

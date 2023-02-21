@@ -10,7 +10,7 @@ import useSelectedOption from "./hooks/useSelectedOption";
 import useFocusedOption from "./hooks/useFocusedOption";
 import useClickAway from "./hooks/useClickAway";
 import focusOnButton from "./utils/focusOnButton";
-import type { OptionType } from "./type";
+import type { OptionType } from "../type";
 
 type Props = {
   children: React.ReactNode;
