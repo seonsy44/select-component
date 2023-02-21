@@ -17,16 +17,24 @@ function App() {
 
   return (
     <div className="App">
-      <Select>
-        {() => {
+      <Select defaultOption={options[0]} onSelectChange={handleChange}>
+        {({ isOpened, selectedOption, buttonProps }) => {
           return (
-            <div className="select">
+            <>
               <label className="select-label">Frontend: </label>
-              <button className="select-button">button</button>
-              <ul className="select-options">
-                <li className="select-option">option</li>
-              </ul>
-            </div>
+              <button className="select-button" {...buttonProps}>
+                {selectedOption?.name}
+              </button>
+              {isOpened && (
+                <ul className="select-options">
+                  {options.map((option: OptionType) => (
+                    <li className="select-option" key={option.id}>
+                      {option.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
           );
         }}
       </Select>
