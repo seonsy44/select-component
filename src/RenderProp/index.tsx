@@ -6,6 +6,7 @@ import useFocusedOption from "./hooks/useFocusedOption";
 import useKeyDown from "./hooks/useKeyDown";
 import type { OptionType } from "../type";
 import useMouse from "./hooks/useMouse";
+import useClickAway from "./hooks/useClickAway";
 
 type ChildrenProps = {
   isOpened: boolean;
@@ -50,6 +51,7 @@ function Select({ children, defaultOption, onSelectChange }: Props) {
     if (!id || !name) return;
     changeSelectedOption({ id, name });
   };
+  useClickAway({ ref: selectRef, handleClick: toggle.off });
 
   if (!children || typeof children !== "function") return null;
 
