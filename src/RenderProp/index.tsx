@@ -36,7 +36,11 @@ type Props = {
 function Select({ children, defaultOption, onSelectChange }: Props) {
   const selectRef = useRef<HTMLDivElement>(null);
   const { isOpened, toggle } = useToggle({});
-  const { selectedOption, changeSelectedOption } = useSelectedOption({ defaultOption, onSelectChange, toggle });
+  const { selectedOption, changeSelectedOption, handleOptionClick } = useSelectedOption({
+    defaultOption,
+    onSelectChange,
+    toggle,
+  });
   const { changeFocusedOption } = useFocusedOption({ selectedOption, selectRef, isOpened });
   const { handleKeyDownOnButton, handleKeyDownOnLI } = useKeyDown({
     toggle,
@@ -44,13 +48,6 @@ function Select({ children, defaultOption, onSelectChange }: Props) {
     changeSelectedOption,
   });
   const { handleMouseEnter, handleMouseLeave } = useMouse({ changeFocusedOption });
-  const handleOptionClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    const LI = e.currentTarget;
-    const id = LI.dataset.id;
-    const name = LI.textContent;
-    if (!id || !name) return;
-    changeSelectedOption({ id, name });
-  };
   useClickAway({ ref: selectRef, handleClick: toggle.off });
 
   if (!children || typeof children !== "function") return null;
