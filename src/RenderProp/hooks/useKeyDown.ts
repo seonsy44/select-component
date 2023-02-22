@@ -1,5 +1,5 @@
-import { OptionType } from "../../type";
 import optionFromNode from "../utils/optionFromNode";
+import type { OptionType } from "../../type";
 
 type Props = {
   toggle: {

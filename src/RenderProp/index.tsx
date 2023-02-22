@@ -4,9 +4,9 @@ import useToggle from "./hooks/useToggle";
 import useSelectedOption from "./hooks/useSelectedOption";
 import useFocusedOption from "./hooks/useFocusedOption";
 import useKeyDown from "./hooks/useKeyDown";
-import type { OptionType } from "../type";
 import useMouse from "./hooks/useMouse";
 import useClickAway from "./hooks/useClickAway";
+import type { OptionType } from "../type";
 
 type ChildrenProps = {
   isOpened: boolean;
