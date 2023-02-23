@@ -11,11 +11,11 @@ const options = [
 ];
 
 function App() {
-  const {} = useSelect;
-
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
+
+  const { isOpened, selectedOption } = useSelect({ defaultOption: options[0], onSelectChange: handleChange });
 
   return (
     <div className="App">
