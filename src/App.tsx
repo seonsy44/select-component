@@ -22,17 +22,26 @@ function App() {
 
   return (
     <div className="App">
-      <div className="select">
+      <div className="select" ref={selectRef}>
         <label className="select-label">Frontend: </label>
-        <button className="select-button">select</button>
+        <button className="select-button" {...buttonProps}>
+          {selectedOption.name}
+        </button>
 
-        <ul className="select-options">
-          {options.map((option: OptionType) => (
-            <li key={option.id} data-id={option.id} className="select-option">
-              {option.name}
-            </li>
-          ))}
-        </ul>
+        {isOpened && (
+          <ul className="select-options" {...optionsProps}>
+            {options.map((option: OptionType) => (
+              <li
+                key={option.id}
+                data-id={option.id}
+                className={`select-option${selectedOption?.id === option.id ? " selected" : ""}`}
+                {...optionProps}
+              >
+                {option.name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
