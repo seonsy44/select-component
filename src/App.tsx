@@ -1,5 +1,5 @@
-import Select from "./CompoundComponent";
-import type { OptionType } from "./CompoundComponent/type";
+import Select from "./RenderProp";
+import type { OptionType } from "./type";
 import "./styles/select.css";
 
 const options = [
@@ -17,23 +17,31 @@ function App() {
 
   return (
     <div className="App">
-      <Select
-        className="select"
-        onSelectChange={handleChange}
-        defaultOption={options[0]}
-      >
-        <Select.Label className="select-label">Frontend: </Select.Label>
-        <Select.Button className="select-button" />
-        <Select.Options className="select-options">
-          {options.map(({ id, name }) => (
-            <Select.Option
-              className="select-option"
-              id={id}
-              name={name}
-              key={id}
-            />
-          ))}
-        </Select.Options>
+      <Select defaultOption={options[0]} onSelectChange={handleChange}>
+        {({ isOpened, selectedOption, buttonProps, optionsProps, optionProps }) => {
+          return (
+            <>
+              <label className="select-label">Frontend: </label>
+              <button className="select-button" {...buttonProps}>
+                {selectedOption.name}
+              </button>
+              {isOpened && (
+                <ul className="select-options" {...optionsProps}>
+                  {options.map((option: OptionType) => (
+                    <li
+                      key={option.id}
+                      className={`select-option${selectedOption.id === option.id ? " selected" : ""}`}
+                      data-id={option.id}
+                      {...optionProps}
+                    >
+                      {option.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          );
+        }}
       </Select>
     </div>
   );
