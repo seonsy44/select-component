@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import Select from "./RenderProp";
 import type { OptionType } from "./type";
 import "./styles/select.css";
@@ -11,16 +13,17 @@ const options = [
 ];
 
 function App() {
+  const selectRef = useRef<HTMLDivElement>(null);
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
 
   return (
     <div className="App">
-      <Select defaultOption={options[0]} onSelectChange={handleChange}>
+      <Select selectRef={selectRef} defaultOption={options[0]} onSelectChange={handleChange}>
         {({ isOpened, selectedOption, buttonProps, optionsProps, optionProps }) => {
           return (
-            <>
+            <div className="select" ref={selectRef}>
               <label className="select-label">Frontend: </label>
               <button className="select-button" {...buttonProps}>
                 {selectedOption.name}
@@ -39,7 +42,7 @@ function App() {
                   ))}
                 </ul>
               )}
-            </>
+            </div>
           );
         }}
       </Select>
