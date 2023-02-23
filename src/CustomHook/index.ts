@@ -4,6 +4,7 @@ import useSelectedOption from "./hooks/useSelectedOption";
 import useToggle from "./hooks/useToggle";
 import useFocusedOption from "./hooks/useFocusedOption";
 import useKeyDown from "./hooks/useKeyDown";
+import useMouse from "./hooks/useMouse";
 import type { OptionType } from "../type";
 
 type Props = {
@@ -25,8 +26,15 @@ function useSelect({ defaultOption, onSelectChange }: Props) {
     changeFocusedOption,
     changeSelectedOption,
   });
+  const { handleMouseEnter, handleMouseLeave } = useMouse({ changeFocusedOption });
 
-  return { selectRef, isOpened, selectedOption, buttonProps: { onClick: toggle, onKeyDown: handleKeyDownOnButton } };
+  return {
+    selectRef,
+    isOpened,
+    selectedOption,
+    buttonProps: { onClick: toggle, onKeyDown: handleKeyDownOnButton },
+    optionsProps: { onMouseLeave: handleMouseLeave },
+  };
 }
 
 export default useSelect;
