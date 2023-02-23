@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 
 import useToggle from "./hooks/useToggle";
 import useSelectedOption from "./hooks/useSelectedOption";
@@ -29,13 +29,15 @@ type ChildrenProps = {
 
 type Props = {
   children: (args: ChildrenProps) => JSX.Element;
+  selectRef: React.RefObject<HTMLDivElement>;
   defaultOption: OptionType;
   onSelectChange: (option: OptionType) => void;
+  onSelectOpen?: () => void;
+  onSelectClose?: () => void;
 };
 
-function Select({ children, defaultOption, onSelectChange }: Props) {
-  const selectRef = useRef<HTMLDivElement>(null);
-  const { isOpened, toggle } = useToggle({});
+function Select({ children, selectRef, defaultOption, onSelectChange, onSelectOpen, onSelectClose }: Props) {
+  const { isOpened, toggle } = useToggle({ onOpen: onSelectOpen, onClose: onSelectClose });
   const { selectedOption, changeSelectedOption, handleOptionClick } = useSelectedOption({
     defaultOption,
     onSelectChange,
@@ -53,7 +55,7 @@ function Select({ children, defaultOption, onSelectChange }: Props) {
   if (!children || typeof children !== "function") return null;
 
   return (
-    <div className="select" ref={selectRef}>
+    <>
       {children({
         isOpened,
         selectedOption,
@@ -66,7 +68,7 @@ function Select({ children, defaultOption, onSelectChange }: Props) {
           onMouseEnter: handleMouseEnter,
         },
       })}
-    </div>
+    </>
   );
 }
 
