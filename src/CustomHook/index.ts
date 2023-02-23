@@ -9,12 +9,12 @@ import type { OptionType } from "../type";
 import useClickAway from "./hooks/useClickAway";
 
 type Props = {
+  selectRef: React.RefObject<HTMLDivElement>;
   defaultOption: OptionType;
   onSelectChange: (option: OptionType) => void;
 };
 
-function useSelect({ defaultOption, onSelectChange }: Props) {
-  const selectRef = useRef<HTMLDivElement>(null);
+function useSelect({ selectRef, defaultOption, onSelectChange }: Props) {
   const { isOpened, toggle } = useToggle({});
   const { selectedOption, changeSelectedOption, handleOptionClick } = useSelectedOption({
     defaultOption,

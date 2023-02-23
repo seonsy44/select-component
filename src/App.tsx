@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import useSelect from "./CustomHook";
 import type { OptionType } from "./type";
 import "./styles/select.css";
@@ -11,11 +13,14 @@ const options = [
 ];
 
 function App() {
+  const selectRef = useRef<HTMLDivElement>(null);
+
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
 
-  const { selectRef, isOpened, selectedOption, buttonProps, optionsProps, optionProps } = useSelect({
+  const { isOpened, selectedOption, buttonProps, optionsProps, optionProps } = useSelect({
+    selectRef,
     defaultOption: options[0],
     onSelectChange: handleChange,
   });
