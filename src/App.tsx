@@ -1,6 +1,7 @@
 import { useRef } from "react";
 
 import Select from "./CompoundComponent";
+import focusOnButton from "./CompoundComponent/utils/focusOnButton";
 import type { OptionType } from "./CompoundComponent/type";
 import "./styles/select.css";
 
@@ -14,13 +15,20 @@ const options = [
 
 function App() {
   const selectRef = useRef<HTMLDivElement>(null);
+  const handleSelectClose = () => focusOnButton(selectRef);
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
 
   return (
     <div className="App">
-      <Select className="select" selectRef={selectRef} onSelectChange={handleChange} defaultOption={options[0]}>
+      <Select
+        className="select"
+        selectRef={selectRef}
+        defaultOption={options[0]}
+        onSelectChange={handleChange}
+        onSelectClose={handleSelectClose}
+      >
         <Select.Label className="select-label">Frontend: </Select.Label>
         <Select.Button className="select-button" />
         <Select.Options className="select-options">
