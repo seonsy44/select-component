@@ -15,7 +15,7 @@ function App() {
     console.log(`${option.name}: API /${option.id}`);
   };
 
-  const { selectRef, isOpened, selectedOption, buttonProps, optionsProps } = useSelect({
+  const { selectRef, isOpened, selectedOption, buttonProps, optionsProps, optionProps } = useSelect({
     defaultOption: options[0],
     onSelectChange: handleChange,
   });

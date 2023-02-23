@@ -34,6 +34,12 @@ function useSelect({ defaultOption, onSelectChange }: Props) {
     selectedOption,
     buttonProps: { onClick: toggle, onKeyDown: handleKeyDownOnButton },
     optionsProps: { onMouseLeave: handleMouseLeave },
+    optionProps: {
+      tabIndex: 0,
+      onClick: handleOptionClick,
+      onKeyDown: handleKeyDownOnLI,
+      onMouseEnter: handleMouseEnter,
+    },
   };
 }
 
