@@ -3,6 +3,7 @@ import { useRef } from "react";
 import Select from "./RenderProp";
 import type { OptionType } from "./type";
 import "./styles/select.css";
+import focusOnButton from "./RenderProp/utils/focusOnButton";
 
 const options = [
   { id: "js", name: "JavaScript" },
@@ -14,13 +15,19 @@ const options = [
 
 function App() {
   const selectRef = useRef<HTMLDivElement>(null);
+  const handleSelectClose = () => focusOnButton(selectRef);
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
 
   return (
     <div className="App">
-      <Select selectRef={selectRef} defaultOption={options[0]} onSelectChange={handleChange}>
+      <Select
+        selectRef={selectRef}
+        defaultOption={options[0]}
+        onSelectChange={handleChange}
+        onSelectClose={handleSelectClose}
+      >
         {({ isOpened, selectedOption, buttonProps, optionsProps, optionProps }) => {
           return (
             <div className="select" ref={selectRef}>
