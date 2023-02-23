@@ -6,6 +6,7 @@ import useFocusedOption from "./hooks/useFocusedOption";
 import useKeyDown from "./hooks/useKeyDown";
 import useMouse from "./hooks/useMouse";
 import type { OptionType } from "../type";
+import useClickAway from "./hooks/useClickAway";
 
 type Props = {
   defaultOption: OptionType;
@@ -27,6 +28,7 @@ function useSelect({ defaultOption, onSelectChange }: Props) {
     changeSelectedOption,
   });
   const { handleMouseEnter, handleMouseLeave } = useMouse({ changeFocusedOption });
+  useClickAway({ ref: selectRef, handleClick: toggle.off });
 
   return {
     selectRef,
