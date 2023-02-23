@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo } from "react";
 
 import Button from "./ui/Button";
 import Option from "./ui/Option";
@@ -14,12 +14,12 @@ import type { OptionType } from "./type";
 
 type Props = {
   children: React.ReactNode;
+  selectRef: React.RefObject<HTMLDivElement>;
   defaultOption: OptionType;
   onSelectChange: (option: OptionType) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-function Select({ children, defaultOption, onSelectChange, ...attributes }: Props) {
-  const selectRef = useRef<HTMLDivElement>(null);
+function Select({ children, selectRef, defaultOption, onSelectChange, ...attributes }: Props) {
   const onToggleClose = () => focusOnButton(selectRef);
 
   const { isOpened, toggle } = useToggle({ onClose: onToggleClose });
