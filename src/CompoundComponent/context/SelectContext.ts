@@ -1,5 +1,5 @@
 import { createContext, MouseEvent } from "react";
-import { OptionType } from "../type";
+import { OptionType } from "../../type";
 
 type SelectContextType = {
   isOpened: boolean;

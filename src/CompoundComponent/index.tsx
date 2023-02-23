@@ -11,6 +11,7 @@ import useFocusedOption from "./hooks/useFocusedOption";
 import useClickAway from "./hooks/useClickAway";
 import type { OptionType } from "./type";
 
+
 type Props = {
   children: React.ReactNode;
   selectRef: React.RefObject<HTMLDivElement>;

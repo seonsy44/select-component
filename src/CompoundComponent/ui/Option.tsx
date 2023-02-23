@@ -3,7 +3,7 @@ import React from "react";
 import useSelectContext from "../hooks/useSelectContext";
 import useKeyDown from "../hooks/useKeyDown";
 import getClassList from "../utils/getClassList";
-import type { OptionType } from "../type";
+import type { OptionType } from "../../type";
 import useMouse from "../hooks/useMouse";
 
 type Props = OptionType & React.HTMLAttributes<HTMLLIElement>;
