@@ -1,6 +1,9 @@
-import Select from "./RenderProp";
-import type { OptionType } from "./type";
+import { useRef } from "react";
+
+import useSelect from "./CustomHook";
+import focusOnButton from "./CustomHook/utils/focusOnButton";
 import "./styles/select.css";
+import type { OptionType } from "./type";
 
 const options = [
   { id: "js", name: "JavaScript" },
@@ -11,38 +14,44 @@ const options = [
 ];
 
 function App() {
+  const selectRef = useRef<HTMLDivElement>(null);
+
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
 
+  const handleSelectClose = () => focusOnButton(selectRef);
+
+  const { isOpened, selectedOption, buttonProps, optionsProps, optionProps } = useSelect({
+    selectRef,
+    defaultOption: options[0],
+    onSelectChange: handleChange,
+    onSelectClose: handleSelectClose,
+  });
+
   return (
     <div className="App">
-      <Select defaultOption={options[0]} onSelectChange={handleChange}>
-        {({ isOpened, selectedOption, buttonProps, optionsProps, optionProps }) => {
-          return (
-            <>
-              <label className="select-label">Frontend: </label>
-              <button className="select-button" {...buttonProps}>
-                {selectedOption.name}
-              </button>
-              {isOpened && (
-                <ul className="select-options" {...optionsProps}>
-                  {options.map((option: OptionType) => (
-                    <li
-                      key={option.id}
-                      className={`select-option${selectedOption.id === option.id ? " selected" : ""}`}
-                      data-id={option.id}
-                      {...optionProps}
-                    >
-                      {option.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </>
-          );
-        }}
-      </Select>
+      <div className="select" ref={selectRef}>
+        <label className="select-label">Frontend: </label>
+        <button className="select-button" {...buttonProps}>
+          {selectedOption.name}
+        </button>
+
+        {isOpened && (
+          <ul className="select-options" {...optionsProps}>
+            {options.map((option: OptionType) => (
+              <li
+                key={option.id}
+                data-id={option.id}
+                className={`select-option${selectedOption?.id === option.id ? " selected" : ""}`}
+                {...optionProps}
+              >
+                {option.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
