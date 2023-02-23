@@ -12,10 +12,12 @@ type Props = {
   selectRef: React.RefObject<HTMLDivElement>;
   defaultOption: OptionType;
   onSelectChange: (option: OptionType) => void;
+  onSelectOpen?: () => void;
+  onSelectClose?: () => void;
 };
 
-function useSelect({ selectRef, defaultOption, onSelectChange }: Props) {
-  const { isOpened, toggle } = useToggle({});
+function useSelect({ selectRef, defaultOption, onSelectChange, onSelectOpen, onSelectClose }: Props) {
+  const { isOpened, toggle } = useToggle({ onOpen: onSelectOpen, onClose: onSelectClose });
   const { selectedOption, changeSelectedOption, handleOptionClick } = useSelectedOption({
     defaultOption,
     onSelectChange,

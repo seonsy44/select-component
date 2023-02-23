@@ -1,8 +1,9 @@
 import { useRef } from "react";
 
 import useSelect from "./CustomHook";
-import type { OptionType } from "./type";
+import focusOnButton from "./CustomHook/utils/focusOnButton";
 import "./styles/select.css";
+import type { OptionType } from "./type";
 
 const options = [
   { id: "js", name: "JavaScript" },
@@ -19,10 +20,13 @@ function App() {
     console.log(`${option.name}: API /${option.id}`);
   };
 
+  const handleSelectClose = () => focusOnButton(selectRef);
+
   const { isOpened, selectedOption, buttonProps, optionsProps, optionProps } = useSelect({
     selectRef,
     defaultOption: options[0],
     onSelectChange: handleChange,
+    onSelectClose: handleSelectClose,
   });
 
   return (
