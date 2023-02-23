@@ -23,14 +23,14 @@ function App() {
             <>
               <label className="select-label">Frontend: </label>
               <button className="select-button" {...buttonProps}>
-                {selectedOption?.name}
+                {selectedOption.name}
               </button>
               {isOpened && (
                 <ul className="select-options" {...optionsProps}>
                   {options.map((option: OptionType) => (
                     <li
                       key={option.id}
-                      className={`select-option${selectedOption?.id === option.id ? " selected" : ""}`}
+                      className={`select-option${selectedOption.id === option.id ? " selected" : ""}`}
                       data-id={option.id}
                       {...optionProps}
                     >
