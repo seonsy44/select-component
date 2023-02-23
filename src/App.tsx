@@ -15,11 +15,9 @@ const options = [
 
 function App() {
   const selectRef = useRef<HTMLDivElement>(null);
-
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
-
   const handleSelectClose = () => focusOnButton(selectRef);
 
   const { isOpened, selectedOption, buttonProps, optionsProps, optionProps } = useSelect({
