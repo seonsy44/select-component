@@ -1,4 +1,4 @@
-import Select from "./RenderProp";
+import useSelect from "./CustomHook";
 import type { OptionType } from "./type";
 import "./styles/select.css";
 
@@ -11,38 +11,26 @@ const options = [
 ];
 
 function App() {
+  const {} = useSelect;
+
   const handleChange = (option: OptionType) => {
     console.log(`${option.name}: API /${option.id}`);
   };
 
   return (
     <div className="App">
-      <Select defaultOption={options[0]} onSelectChange={handleChange}>
-        {({ isOpened, selectedOption, buttonProps, optionsProps, optionProps }) => {
-          return (
-            <>
-              <label className="select-label">Frontend: </label>
-              <button className="select-button" {...buttonProps}>
-                {selectedOption.name}
-              </button>
-              {isOpened && (
-                <ul className="select-options" {...optionsProps}>
-                  {options.map((option: OptionType) => (
-                    <li
-                      key={option.id}
-                      className={`select-option${selectedOption.id === option.id ? " selected" : ""}`}
-                      data-id={option.id}
-                      {...optionProps}
-                    >
-                      {option.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </>
-          );
-        }}
-      </Select>
+      <div className="select">
+        <label className="select-label">Frontend: </label>
+        <button className="select-button">select</button>
+
+        <ul className="select-options">
+          {options.map((option: OptionType) => (
+            <li key={option.id} data-id={option.id} className="select-option">
+              {option.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
