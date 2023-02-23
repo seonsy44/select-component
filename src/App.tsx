@@ -15,7 +15,10 @@ function App() {
     console.log(`${option.name}: API /${option.id}`);
   };
 
-  const { isOpened, selectedOption } = useSelect({ defaultOption: options[0], onSelectChange: handleChange });
+  const { selectRef, isOpened, selectedOption, buttonProps } = useSelect({
+    defaultOption: options[0],
+    onSelectChange: handleChange,
+  });
 
   return (
     <div className="App">
