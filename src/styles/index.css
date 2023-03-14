@@ -167,3 +167,10 @@ body {
   justify-content: center;
   padding: 20px;
 }
+
+.app {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
